@@ -1,0 +1,30 @@
+#pragma kernel FilterKernel
+
+bool InputIsLinear;
+Texture2D Input;
+SamplerState samplerInput;
+
+RWStructuredBuffer<float> Output;
+
+// Color space conversion between sRGB and linear space.
+// http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
+
+float srgb_to_linear(float c)
+{
+    return c * (c * (c * 0.305306011 + 0.682171111) + 0.012522878);
+}
+
+float linear_to_srgb(float c)
+{
+    return max(1.055 * pow(saturate(c), 0.416666667) - 0.055, 0.0);
+}
+
+[numthreads(32, 1, 1)]
+void FilterKernel(uint id : SV_DispatchThreadID)
+{
+    float2 uv = float2(id / 255.0, 0.5);
+    float r = Input.SampleLevel(samplerInput, uv, 0).r;
+    if (InputIsLinear) r = linear_to_srgb(r);
+    Output[id] = r;
+    Output[id + 256] = r > 0.5;
+}

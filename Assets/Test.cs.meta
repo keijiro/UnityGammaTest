@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 23c12cdcd54bb415d83a91dc1c8c9154
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _gradient: {fileID: 2800000, guid: c19a246d65c49443ca8a0d9de5b1ce30, type: 3}
+  - _filter: {fileID: 7200000, guid: 6a91f59c9889042afa6f3b5984ca828e, type: 3}
+  - _visualizer: {fileID: 2100000, guid: 029540a82c608472f888ad97e78d74dc, type: 2}
+  - _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
